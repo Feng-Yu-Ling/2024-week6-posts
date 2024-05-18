@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "16176032-49bc-43ea-af00-dc86524292d6",
+		"name": "posts-render-week6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33251865"
+	},
+	"item": [
+		{
+			"name": "註冊",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"喵喵\",\r\n    \"email\":\"meow@gmail.com\",\r\n    \"confirmPassword\":\"12345678\",\r\n    \"password\":\"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/users/sign_up",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"users",
+						"sign_up"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "登入",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"meow@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/users/sign_in",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"users",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "用戶資料(需登入)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/users/profile",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新密碼(需登入",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"confirmPassword\": \"12345678\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/users/updatePassword",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"users",
+						"updatePassword"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "新增一筆貼文(需登入)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\": \"今天要吃小魚乾3333\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/posts",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新用戶資料(需登入)",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"小咪\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/users/profile",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"users",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "取得所有貼文(需登入)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/posts",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除全部貼文(需登入",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/posts",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刪除一筆貼文(需登入)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/posts/664880a90de261caa23d7054",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts",
+						"664880a90de261caa23d7054"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "更新一筆貼文(需登入)",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\":\"今天要吃鮪魚罐頭\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://two024-week6-posts.onrender.com/posts/664881020de261caa23d705f",
+					"protocol": "http",
+					"host": [
+						"two024-week6-posts",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"posts",
+						"664881020de261caa23d705f"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
