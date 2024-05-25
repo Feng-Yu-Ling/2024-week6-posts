@@ -26,18 +26,42 @@ router.post("/sign_up", handleErrorAsync(async(req, res, next)=>{
     若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
     return next(appError("400", "密碼不一致", next));
   }
-  // 密碼少於8碼
+  // 密碼不少於8碼
   if(!validator.isLength(password, {min: 8})){
     /* next()會進到下一個程式堆疊，
     若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
     return next(appError("400", "密碼字數低於8碼", next));
   }
+  // 密碼必須為英數混合
+  if(password){
+    // validator並沒有提供英數混合的檢查，所以透過正則表達式實現
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    if(!hasLetter || !hasNumber){
+      /* next()會進到下一個程式堆疊，
+      若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
+      return next(appError("400", "密碼必須為英數混合", next));
+    }
+  }
+
+  // 名字不少於2個字元
+  if(!validator.isLength(name, {min: 2})){
+    /* next()會進到下一個程式堆疊，
+    若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
+    return next(appError("400", "名字不能少於2個字元", next));
+  }
+  
   // 是否為Email
   if(!validator.isEmail(email)){
     /* next()會進到下一個程式堆疊，
     若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
     return next(appError("400", "Email格式不正確", next));
   }
+  // findOne()是非同步方法，需要等待結果才能確定是否有找到相同email
+  if(await User.findOne({email})){
+    return next(appError("400", "此Email已註冊過", next));
+  }
+
   // 加密密碼
   password = await bcrypt.hash(req.body.password, 12);
   // Property Shorthand: 當object的屬性名和變數名相同時，可以只寫一次屬性名，讓程式碼更簡潔
@@ -112,6 +136,23 @@ router.post("/updatePassword", isAuth, handleErrorAsync(async(req, res, next)=>{
     /* next()會進到下一個程式堆疊，
     若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
     return next(appError("400", "密碼不一致！", next));
+  }
+  // 密碼不少於8碼
+  if(!validator.isLength(password, {min: 8})){
+    /* next()會進到下一個程式堆疊，
+    若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
+    return next(appError("400", "密碼字數低於8碼", next));
+  }
+  // 密碼必須為英數混合
+  if(password){
+    // validator並沒有提供英數混合的檢查，所以透過正則表達式實現
+    const hasLetter = /[a-zA-Z]/.test(password);
+    const hasNumber = /[0-9]/.test(password);
+    if(!hasLetter || !hasNumber){
+      /* next()會進到下一個程式堆疊，
+      若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
+      return next(appError("400", "密碼必須為英數混合", next));
+    }
   }
   const newPassword = await bcrypt.hash(password, 12);
 

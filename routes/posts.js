@@ -108,7 +108,7 @@ router.delete('/:id', isAuth, handleErrorAsync(
       else if(searchResult.user.toString() !== userId){
           /* next()會進到下一個程式堆疊，
           若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
-          next(appError(404, "此 post ID並非屬於你！"))
+          next(appError(400, "此 post ID並非屬於你！"))
       }
       else{
           await Post.findByIdAndDelete(id);
@@ -141,7 +141,7 @@ router.patch('/:id', isAuth, handleErrorAsync(
       else if(searchResult.user.toString() !== userId){
         /* next()會進到下一個程式堆疊，
         若next()裡面放Error作為參數，則會進到express的錯誤處理middleware*/
-        next(appError(404, "此 post ID並非屬於你！"))
+        next(appError(400, "此 post ID並非屬於你！"))
       }
       else{
           // 等待資料庫更新資料，因為這是一個異步操作，會返回promise，所以需要加await
